@@ -68,7 +68,7 @@ let increment = counter()
 increment()
 increment()
 
-// console.log(example_array)
+console.log(example_array)
 
 // error handling and debugging
 const broken_object = {
