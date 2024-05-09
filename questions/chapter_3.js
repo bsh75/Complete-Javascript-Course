@@ -16,31 +16,39 @@ function evenOddFilter(array) {
 
 console.log(evenOddFilter(array))
 //  2. Object Manipulation: Given an array of objects representing people with names and ages, write a function to find the person with the highest age.
-const person = {
-    name: "Bob",
-    age: 101
-}
-const person1 = {
-    name: "kell",
-    age: 12
-}
-const person2 = {
-    name: "Nell",
-    age: 14
-}
-let people = [person, person1, person2]
+// const person = {
+//     name: "Bob",
+//     age: 101
+// }
+// const person1 = {
+//     name: "kell",
+//     age: 12
+// }
+// const person2 = {
+//     name: "Nell",
+//     age: 14
+// }
+// let people = [person, person1, person2]
 
-function highestAge(array) {
-    let highest = 0
-    for (let i = 0; i < array.length; i++) {
-        if (array[i].age > highest) {
-            highest = array[i].age
+const people = [
+    { name: 'ben', age: 30 },
+    { name: 'Eeor', age: 20 },
+    { name: 'Greg', age: 40  }
+]
+
+function findOldestPerson(array) {
+    let oldest = array[0]
+
+    for (let i = 1; i < array.length; i++) {
+        let newPerson = array[i]
+        if (newPerson['age'] > oldest.age) {
+            oldest = newPerson
         }
     }
-    return highest
+    return oldest
 }
 
-console.log(highestAge(people))
+console.log(findOldestPerson(people))
 
 // 3. Data Transformation: Convert an array of strings containing numbers into an array of actual number values.
 let strArray = ["1.5", "3", "3.43", "5", "6"]
@@ -54,19 +62,74 @@ console.log(strArray)
 
 // 4. Array Sorting: Write a function that sorts an array of objects based on a specific property (e.g., 'price') in ascending order.
 function sortByProperty(array, property) {
-    array.sort(array.property)
+    array.sort(function(a,b) {
+        return b[property] - a[property]
+    })
     return array
 }
 
 console.log(sortByProperty(people, "age"))
-// 5. Array Manipulation: Write a function that removes the first and last elements from an array and returns the modified array.
 
+// 5. Array Manipulation: Write a function that removes the first and last elements from an array and returns the modified array.
+let test_array = ["first", 5, 6, 8, 4, 3, 6 , "last"]
+
+function removeFirstLast(array) {
+    return array.slice(1, -1)
+}
+
+console.log(removeFirstLast(test_array))
 
 // 6. Object Iteration: Given an object representing a shopping cart with items and their quantities, write a function that calculates the total cost of the items.
+let shoppingCart = {
+    bread: {"price": 3, "quantity": 4 },
+    cheese: {"price": 13, "quantity": 1 },
+    eggs: {"price": 1, "quantity": 10 }
+}
 
+function costCalculator(obj) {
+    let sum = null
+    let obj_keys = Object.keys(obj)
+    for (let i = 0; i < obj_keys.length; i++) {
+        sum += obj[obj_keys[i]].price * obj[obj_keys[i]].quantity 
+    }
+    return sum
+}
+
+console.log(costCalculator(shoppingCart))
 
 // 7. Object Manipulation: Write a function that deep clones an object (i.e., copies all nested objects and arrays) to prevent unintended mutations.
+let friend = {
+    "rupert": {
+        hobbies: ['gym', 'reading', 'maths']
+    }
+}
 
+function deepClone(obj) {
+    let new_obj = {}
+    let obj_keys = Object.keys(obj)
+    for (let i = 0; i < obj_keys.length; i++) {
+        let current_key = obj_keys[i]
+        new_obj[current_key] = obj[current_key]
+    }
+    return new_obj
+}
+
+function fakeClone(obj) {
+    let new_obj = obj
+    return obj
+}
+
+copy = deepClone(friend)
+fake = fakeClone(friend)
+
+friend.james = {
+    hobbies: ["Reading", "Nothing"],
+    employment: null
+
+}
+
+console.log(copy)
+console.log(fake)
 
 // 8. Object Iteration: Given an object representing a student's grades in various subjects, calculate their average grade.
 
