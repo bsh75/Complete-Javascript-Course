@@ -61,14 +61,19 @@ for (let i = 0; i < strArray.length; i++) {
 console.log(strArray)
 
 // 4. Array Sorting: Write a function that sorts an array of objects based on a specific property (e.g., 'price') in ascending order.
-function sortByProperty(array, property) {
+function sortByNumberProperty(array, property, ascending = true) {
+    // Function sorts an array of objects by a specified property in either ascending (+ve) or descending (-ve) order
     array.sort(function(a,b) {
-        return b[property] - a[property]
+        if (ascending) {    
+            return a[property] - b[property]
+        } else {
+            return b[property] - a[property]
+        }
     })
     return array
 }
 
-console.log(sortByProperty(people, "age"))
+console.log(sortByNumberProperty(people, "age", 1))
 
 // 5. Array Manipulation: Write a function that removes the first and last elements from an array and returns the modified array.
 let test_array = ["first", 5, 6, 8, 4, 3, 6 , "last"]
@@ -132,16 +137,90 @@ console.log(copy)
 console.log(fake)
 
 // 8. Object Iteration: Given an object representing a student's grades in various subjects, calculate their average grade.
+let student_grades = {
+    maths: 95,
+    physics: 75,
+    economics: 43
+}
+sg_keys = Object.keys(student_grades)
+let grade_sum  = null
+let i = 0
+for (i; i < sg_keys.length; i++) {
+    grade_sum += student_grades[sg_keys[i]]
+    console.log(i)
+}
+
+let avg_grade = grade_sum/(i) // Note: not (i + 1) because the i increments after the loop is finished?
+console.log(avg_grade)
 
 
 // 9. Scope and Closure: Create a function that returns a new function. The returned function should remember and log the number of times it's been called.
-
+function counter() {
+    let n = null
+    return function() {
+        n++
+        console.log(n)
+    }
+}
+let count = counter()
+count()
 
 // 10. Array Sorting: Write a function that sorts an array of objects based on a specific property (e.g., 'date') in descending order.
+let entries = [
+    { date: "03/02/24", entry: "Hello1" },
+    { date: "01/05/24", entry: "Hello2" },
+    { date: "03/02/23", entry: "Hello3" }
+]
+
+function sortByDate(array, dateProperty, ascending = true) {
+    // Function sorts an array of objects by a specified date property in either ascending or descending order
+    array.sort(function(a, b) {
+        const dateA = new Date(a[dateProperty]);
+        const dateB = new Date(b[dateProperty]);
+        
+        if (ascending) {
+            return dateA - dateB;
+        } else {
+            return dateB - dateA;
+        }
+    });
+    return array;
+}
+
+const sorted_entries = sortByDate(entries, 'date', false)
+console.log(sorted_entries)
 
 
 // 11. Array Methods: Given an array of strings, filter out all the strings with a length less than 5 characters.
+let string_array = ['a', 'wera', 'asdgah','as', 'sghj5jjdv', 'wera', 'a', 'as']
+for (let i = 0; i < string_array.length; i++ ) {
+    let string = string_array[i]
+    if (string.length < 5) {
+        console.log("Should be removing: ", string_array[i])
+        string_array = string_array.filter(item => item !== string_array[i])
+        i--
+    }
+}
+
+console.log(string_array)
 
 
 // 13. Object Iteration: Write a function that counts the number of occurrences of each word in a given string and stores the results in an object.
+function wordCounter(str, words) {
+    let wordFrequencies = {}; // Initialize the object to store word frequencies
+    for (let i = 0; i < words.length; i++) {
+        let wordCount = 0; // Initialize the word count
+        let word = words[i]
+        for (let i = 0; i < str.length; i++) {
+            let tempStr = str.substring(i, i+word.length); // Extract the substring
+            console.log(tempStr)
+            if (tempStr.includes(word)) {
+                wordCount++; // Increment the word count
+            }
+        }
+        wordFrequencies[word] = wordCount; // Add the word frequency to the object
+    }
+    return wordFrequencies; // Return the object
+}
 
+console.log(wordCounter("I am counting the am words and amcurancy of am", ["am", "i"]))
