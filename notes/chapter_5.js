@@ -25,7 +25,7 @@ them.greet()
 
 class Gamer extends Person {
     constructor(name, age, videogame) {
-        super(name, age)
+        super(name, age) // Super asigns parent constructer (in this case assigns this.name and this.age from Person)
         this.videogame = videogame
     }
 }
