@@ -60,7 +60,7 @@ console.log(findAllDuplicates(dummy_arr))
 // Question: Rotate an array to the right by k steps, where k is non-negative. 
 
 let start_array = [1, 2, 3, 4, 5, 6]
-let k = 3
+let k = 2
 let finish_array = [4, 5, 6, 1, 2, 3]
 
 function rotateArray(nums, k) {
@@ -79,7 +79,7 @@ console.log(rotateArray(start_array, k))
 // Open brackets must be closed by the same type of brackets.
 // Open brackets must be closed in the correct order.
 
-let s = "()[]{}"
+let s = "]()[]{[}"
 let s_2 = "([])[]]{}{]}"
 
 function validParenthesis(str) {
@@ -92,6 +92,7 @@ function validParenthesis(str) {
     let stack = []
 
     for (let current_bracket of str) {
+        console.log(stack)
         if (stack.length === 0) {
             stack.push(current_bracket)
         } else if (current_bracket in combos) {
@@ -112,4 +113,5 @@ function validParenthesis(str) {
     return stack.length === 0
 }
 
+console.log(validParenthesis(s))
 console.log(validParenthesis(s_2))
