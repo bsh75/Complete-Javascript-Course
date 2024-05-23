@@ -16,7 +16,8 @@ console.log(sum(9, 9))
 // 3. Given an object person with properties name and age, use object destructuring to create two variables name and age, extracting the values from the object.
 const person = {
     name: "sim",
-    age: 2
+    age: 2,
+    height: 195
 }
 let {name, age} = person
 console.log(name, age)
@@ -77,10 +78,15 @@ arrayIter.forEach((currentValue) => {
     console.log(currentValue)
 })
 
+// NEW METHOD
+for (let current of arrayIter) {
+    console.log(current)
+}
+
 
 // 11. Given an array of numbers, use the map method to create a new array with each number squared.
 let new_array = arrayIter.map((currentValue, currentIndex) => {
-    return `${currentValue} is at the ${currentIndex} index`
+    return currentValue**2
 })
 
 console.log(new_array)
@@ -92,14 +98,19 @@ console.log(ageStatus)
 
 
 // 13. How do you use the logical AND operator to execute a function logMessage() only if the variable isLoggedIn is true?
-let logMessage = (isLoggedIn) => { 
-    let message = "MESSAGE" && isLoggedIn 
-    console.log(message)
+let isLoggedIn = true
+
+let logMessage = () => { 
+    console.log("MESSAGE")
 }
 
-logMessage(true)
-
+isLoggedIn && logMessage()
 
 // 14. How can you use the logical OR operator to assign a default value of "guest" to a variable username if the current user.name is undefined or null?
+let user = {
+    // name: "gary"
+}
 
+let username = user.name || "guest"
+console.log(username)
 
