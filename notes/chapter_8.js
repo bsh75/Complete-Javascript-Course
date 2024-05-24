@@ -79,7 +79,7 @@ console.log(rotateArray(start_array, k))
 // Open brackets must be closed by the same type of brackets.
 // Open brackets must be closed in the correct order.
 
-let s = "]()[]{[}"
+let s = "()[]{}"
 let s_2 = "([])[]]{}{]}"
 
 function validParenthesis(str) {

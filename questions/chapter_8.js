@@ -94,14 +94,13 @@ function validString(string) {
         } else if ( bracket in combos ) {
             stack.push(bracket)
         } else {
-            stack.pop(bracket)
-        }
-        if (stack.length === 0) {
-            return false
-        } else {
-            return true
+            let last_value_on_stack = stack[-1]
+            if (combos[last_value_on_stack] === bracket) {
+                stack.pop(bracket)
+            }
         }
     }
+    return stack.length === 0
 }
 
 // console.log(validString(str))
